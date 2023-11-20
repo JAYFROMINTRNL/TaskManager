@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 
 // GET ALL LISTS
 app.get('/lists', (req, res) => {
-    // res.send("hello world!!");
+    // res.send('heyyy');
     //  THIS SENDS AN ARRAY OF ALL THE LISTS IN THE DATABASE
     List.find({}).then((lists) => {
         res.send(lists);
