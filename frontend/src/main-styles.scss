@@ -1,0 +1,31 @@
+// this is where we put global styles and change variables values
+
+// importing fonts and nunito
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
+
+$hot-pink: rgb(151, 255, 238);
+$red: rgb(130, 213, 221);
+$light-red: rgb(255, 112, 112);
+$light: #f8f8f8;
+$dark-red: #2a0000;
+$dark: black;
+
+
+// update bulma's global variables
+$family-sans-serif: "Roboto", sans-serif;
+$primary: $red;
+$link: $light-red;
+
+// bulma's component variables
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+
+// custom global styles (applied to the whole app)
+
+html {
+    background: linear-gradient(to right top, $hot-pink, $red);
+}
+html, body {
+    height: 100%;
+}
