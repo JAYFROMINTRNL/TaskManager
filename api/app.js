@@ -62,6 +62,56 @@ app.delete('/lists/:id', (req, res) => {
     })
 });
 
+
+// GETS ALL TASKS IN A SPECIFIC LIST
+app.get('/lists/:listId/tasks', (req, res) => {
+    // RETURNS ALL TASKS THAT BELONG TO A CERTAIN LIST BY ID
+    Task.find({
+        _listId: req.params.listId
+    }).then((tasks) => {
+        res.send(tasks);
+    })
+})
+
+
+// MAKES NEW TASK IN A LIST
+app.post('/lists/:listId/tasks', (req, res) => {
+    // MAKES A NEW TASK IN A CERTAIN LIST BY LIST ID
+    let newTask = new Task({
+        title: req.body.title,
+        _listId: req.params.listId
+    });
+    newTask.save().then((newTaskDoc) => {
+        res.send(newTaskDoc);
+    })
+});
+
+// UPDATES A TASK IN A LIST 
+app.patch('/lists/:listId/tasks/:taskId', (req, res) => {
+    // THIS UPDATES A SPECIFIC TASK ITEM IN A LIST BY USING BOTH IDS
+    Task.findOneAndUpdate({
+        _id: req.params.taskId,
+        _listId: req.params.listId
+    },  {
+        $set: req.body
+        }
+    ).then(() => {
+        res.sendStatus(200);
+    });
+
+})
+
+// DELETES A TASK IN A SPECIFIC LIST
+app.delete('/lists/:listId/tasks/:taskId', (req, res) => {
+    Task.findOneAndDelete({
+        _id: req.params.taskId,
+        _listId: req.params.listId
+    }).then((removedTaskDoc) => {
+        res.send(removedTaskDoc)
+    })
+});
+
+
 app.listen(3000, () => {
     console.log("server is listening on port 3000 :)");
 })
