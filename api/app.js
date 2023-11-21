@@ -1,3 +1,11 @@
+// HERE'S THE STRUCTURE
+// THE USER CAN MAKE MULTIPLE TODO LISTS, EACH HAVING THEIR OWN SUB LISTS
+// LIST = [TASK1,TASK2,TASK3,TASK4,TASK5]
+// This will take input from the frontend UI to add, change, and delete individual lists and tasks
+// and will store the information in the mongo Database. This API interacts with the database and 
+// the frontend UI to exchange information.
+
+
 const express = require('express');
 const app = express();
 
@@ -11,8 +19,9 @@ const bodyParser = require('body-parser');
 // const { Task } = require('./db/models/task.model');
 const { List, Task } = require('./db/models');
 
-// LOAD MIDDDLEWARE
+// LOADS MIDDDLEWARE
 app.use(bodyParser.json());
+
 
 // GET ALL LISTS
 app.get('/lists', (req, res) => {
