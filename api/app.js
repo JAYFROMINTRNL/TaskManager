@@ -80,6 +80,17 @@ app.get('/lists/:listId/tasks', (req, res) => {
     }).then((tasks) => {
         res.send(tasks);
     })
+});
+
+// (this won't neccessarily be used in the project)
+// GETS A SPECIFIC TASK WITHIN A LIST
+app.get('/lists/:listId/task/:taskId', (req, res) => {
+    Task.findOne({
+        _id: req.params.taskId,
+        _listId: req.params.listId
+    }).then((task) => {
+        res.send(task)
+    })
 })
 
 
