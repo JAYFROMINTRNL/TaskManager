@@ -44,13 +44,22 @@ app.post('/lists', (req, res) => {
 // UPDATES A LIST
 app.patch('/lists/:id', (req, res) => {
     // THIS UPDATES A LIST WITH ID AND NEW DATA IN THE JSON=
-
+    List.findOneAndUpdate({ _id: req.params.id }, {
+        $set: req.body
+    }).then(() => {
+        res.sendStatus(200);
+    });
 });
 
 
 // DELETES LIST
 app.delete('/lists/:id', (req, res) => {
     // THIS DELETES A SPECIFIED LIST
+    List.findOneAndDelete({
+        _id: req.params.id
+    }).then((removedListDoc) => {
+        res.send(removedListDoc);
+    })
 });
 
 app.listen(3000, () => {
